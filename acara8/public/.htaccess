@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteBase /BkpmWebServer/acara8/public/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^ index.php [L]
