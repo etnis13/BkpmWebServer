@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Mengubah URL /api/mahasiswa atau /api/mahasiswa/1
+# menjadi api/mahasiswa.php?id=1
+RewriteRule ^api/mahasiswa/?([0-9]*)/?$ api/mahasiswa.php?id=$1 [QSA,L]
