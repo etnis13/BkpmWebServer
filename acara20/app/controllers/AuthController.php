@@ -12,7 +12,7 @@ class AuthController {
         $user = $this->user->findByUsername($username);
         if (!$user || !password_verify($password, $user['password'])) Response::json(401, false, 'Username atau password salah');
         $token = Auth::createToken(['sub' => (int)$user['id'], 'username' => $user['username'], 'role' => $user['role']]);
-        Response::json(200, true, 'Login berhasil', ['token' => $token, 'token_type' => 'Bearer', 'expires_in' => 3600]);
+        Response::json(200, true, 'Login berhasil', ['token' => $token, 'token_type' => 'Bearer', 'expires_in' => 300]);
     }
 
     public function register(): void {

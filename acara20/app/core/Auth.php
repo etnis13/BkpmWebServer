@@ -6,7 +6,7 @@ class Auth {
     public static function createToken(array $payload): string {
         $header = ['alg' => 'HS256', 'typ' => 'JWT'];
         $payload['iat'] = time();
-        $payload['exp'] = time() + 3600;
+        $payload['exp'] = time() + 300;
         $head = self::base64UrlEncode(json_encode($header));
         $body = self::base64UrlEncode(json_encode($payload));
         $signature = self::base64UrlEncode(hash_hmac('sha256', "$head.$body", self::SECRET, true));

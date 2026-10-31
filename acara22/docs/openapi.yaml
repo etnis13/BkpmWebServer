@@ -1,0 +1,13 @@
+
+openapi: 3.0.0
+
+info:
+  title: API Sistem Informasi Akademik
+  description: Dokumentasi REST API Acara 22 menggunakan OpenAPI 3.0
+  version: 1.0.0
+
+servers:
+  - url: http://localhost/BkpmWebServer/acara22/public
+    description: Local Development Server
+
+paths: {}
