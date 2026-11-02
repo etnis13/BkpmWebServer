@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistem Informasi Akademik</title>
+</head>
+<body>
+
+    <h2>Dashboard Sistem Informasi Akademik</h2>
+
+    <p id="info-user"></p>
+
+    <h3>Total Mahasiswa: <span id="total-mahasiswa">0</span></h3>
+
+    <button id="btn-logout">Logout</button>
+
+    <hr>
+
+   <h3>Data Mahasiswa</h3>
+
+<div id="aksi-admin">
+    <button id="btn-tambah">Tambah Mahasiswa</button>
+</div>
+
+<br>
+
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Program Studi</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+
+    <tbody id="tabel-mahasiswa">
+        <tr>
+            <td colspan="4">Memuat data...</td>
+        </tr>
+    </tbody>
+</table>
+
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

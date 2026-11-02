@@ -1,0 +1,171 @@
+
+openapi: 3.0.0
+
+info:
+  title: API Sistem Informasi Akademik
+  description: Dokumentasi REST API Acara 22 menggunakan OpenAPI 3.0
+  version: 1.0.0
+
+servers:
+  - url: http://localhost/BkpmWebServer/acara22/public
+    description: Local Development Server
+
+paths:
+  /register:
+    post:
+      summary: Registrasi pengguna
+      description: Mendaftarkan pengguna baru
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: etnisbaru
+                password:
+                  type: string
+                  example: password123
+              required:
+                - username
+                - password
+      responses:
+        '201':
+          description: Registrasi berhasil
+        '400':
+          description: Data registrasi tidak valid
+  /login:
+    post:
+      summary: Login pengguna
+      description: Autentikasi pengguna untuk mendapatkan token JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: etnis20
+                password:
+                  type: string
+                  example: password123
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Login berhasil
+        '401':
+          description: Username atau password salah
+
+  /mahasiswa:
+    get:
+      summary: Menampilkan data mahasiswa
+      description: Mengambil seluruh data mahasiswa atau berdasarkan ID
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 5
+      responses:
+        '200':
+          description: Data mahasiswa berhasil diambil
+
+    post:
+      summary: Menambahkan data mahasiswa
+      description: Menambahkan mahasiswa baru
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nim:
+                  type: string
+                  example: '230010003'
+                nama:
+                  type: string
+                  example: Andi Saputra
+                prodi:
+                  type: string
+                  example: Teknik Informatika
+              required:
+                - nim
+                - nama
+                - prodi
+      responses:
+        '201':
+          description: Data mahasiswa berhasil ditambahkan
+        '401':
+          description: Token tidak valid atau tidak tersedia
+
+    put:
+      summary: Mengubah data mahasiswa
+      description: Memperbarui data mahasiswa berdasarkan ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 5
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nim:
+                  type: string
+                  example: '230010001'
+                nama:
+                  type: string
+                  example: Etnis Supradana
+                prodi:
+                  type: string
+                  example: Teknik Informatika
+      responses:
+        '200':
+          description: Data mahasiswa berhasil diperbarui
+        '401':
+          description: Token tidak valid
+        '404':
+          description: Data mahasiswa tidak ditemukan
+
+    delete:
+      summary: Menghapus data mahasiswa
+      description: Menghapus data mahasiswa berdasarkan ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 5
+      responses:
+        '200':
+          description: Data mahasiswa berhasil dihapus
+        '401':
+          description: Token tidak valid
+        '404':
+          description: Data mahasiswa tidak ditemukan
+          components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
